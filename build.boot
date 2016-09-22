@@ -23,14 +23,14 @@
 
 (deftask build []
   (comp (speak)
-        
+
         (cljs)
-        
+
         (garden :styles-var 'productivity-tool.styles/screen
 :output-to "css/garden.css")))
 
 (deftask run []
-  (comp (serve)
+  (comp (serve :port 3001)
         (watch)
         (cljs-repl)
         (reload)
