@@ -1,18 +1,23 @@
 (ns productivity-tool.app
-  (:require [reagent.core :as reagent :refer [atom]]))
+  (:require [reagent.core :as reagent]
+            [re-frame.core :as re-frame]
+            [devtools.core :as devtools]
+            [productivity-tool.handlers]
+            [productivity-tool.subs]
+            [productivity-tool.views :as views]
+            [productivity-tool.config :as config]))
 
-(defn some-component []
-  [:div
-   [:h3 "I am a component!"]
-   [:p.someclass
-    "I have " [:strong "bold"]
-    [:span {:style {:color "red"}} " and red"]
-    " text."]])
+(defn dev-setup []
+  (when config/debug?
+    (enable-console-print!)
+    (println "dev mode")
+    (devtools/install!)))
 
-(defn calling-component []
-  [:div "Parent component"
-   [some-component]])
+(defn mount-root []
+  (reagent/render [views/main-panel]
+                  (.getElementById js/document "container")))
 
-(defn init []
-  (reagent/render-component [calling-component]
-                            (.getElementById js/document "container")))
+(defn ^:export init []
+  (re-frame/dispatch-sync [:initialize-db])
+  (dev-setup)
+  (mount-root))

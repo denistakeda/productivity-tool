@@ -12,6 +12,8 @@
                  [crisptrutski/boot-cljs-test "0.2.0-SNAPSHOT" :scope "test"]
                  [reagent "0.6.0"]
                  [re-frame "0.8.0"]
+                 [re-com "0.8.3"]
+                 [binaryage/devtools "0.8.2"]
                  [org.martinklepsch/boot-garden "1.2.5-3" :scope "test"]])
 
 (require
