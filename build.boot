@@ -14,6 +14,7 @@
                  [re-frame "0.8.0"]
                  [re-com "0.8.3"]
                  [binaryage/devtools "0.8.2"]
+                 [cljsjs/firebase "3.2.1-0"]
                  [org.martinklepsch/boot-garden "1.2.5-3" :scope "test"]])
 
 (require
