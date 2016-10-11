@@ -5,7 +5,7 @@
             [productivity-tool.handlers]
             [productivity-tool.subs]
 
-            [productivity-tool.views :as views]
+            [productivity-tool.views.main-panel :refer [main-panel]]
             [productivity-tool.config :as config]
             [productivity-tool.utils.firebase :as f]))
 
@@ -17,7 +17,7 @@
     (devtools/install!)))
 
 (defn mount-root []
-  (reagent/render [views/main-panel]
+  (reagent/render [main-panel]
                   (.getElementById js/document "container")))
 
 ;; Subscribe to the database events
