@@ -15,7 +15,7 @@
                  [re-com "0.8.3"]
                  [binaryage/devtools "0.8.2"]
                  [cljsjs/firebase "3.2.1-0"]
-                 [deraen/boot-sass  "0.2.1" :scope "test"]
+                 [deraen/boot-sass  "0.3.0-SNAPSHOT" :scope "test"]
                  [org.slf4j/slf4j-nop  "1.7.13" :scope "test"]])
 
 (require
