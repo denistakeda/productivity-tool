@@ -1,5 +1,5 @@
 (set-env!
- :source-paths    #{"src/cljs" "src/clj"}
+ :source-paths    #{"sass" "src/cljs"}
  :resource-paths  #{"resources"}
  :dependencies '[[adzerk/boot-cljs          "1.7.228-1"  :scope "test"]
                  [adzerk/boot-cljs-repl     "0.3.0"      :scope "test"]
@@ -15,7 +15,8 @@
                  [re-com "0.8.3"]
                  [binaryage/devtools "0.8.2"]
                  [cljsjs/firebase "3.2.1-0"]
-                 [org.martinklepsch/boot-garden "1.2.5-3" :scope "test"]])
+                 [deraen/boot-sass  "0.2.1" :scope "test"]
+                 [org.slf4j/slf4j-nop  "1.7.13" :scope "test"]])
 
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
@@ -23,15 +24,14 @@
  '[adzerk.boot-reload    :refer [reload]]
  '[pandeiro.boot-http    :refer [serve]]
  '[crisptrutski.boot-cljs-test :refer [test-cljs]]
- '[org.martinklepsch.boot-garden :refer [garden]])
+ '[deraen.boot-sass    :refer [sass]])
 
 (deftask build []
   (comp (speak)
 
         (cljs)
 
-        (garden :styles-var 'productivity-tool.styles/screen
-:output-to "css/garden.css")))
+        (sass)))
 
 (deftask run []
   (comp (serve :port 3001)
@@ -42,7 +42,7 @@
 
 (deftask production []
   (task-options! cljs {:optimizations :advanced}
-                      garden {:pretty-print false})
+                      sass   {:output-style :compressed})
   identity)
 
 (deftask development []
